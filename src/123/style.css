@@ -1,0 +1,137 @@
+body{
+    font-family: 'Space Grotesk', sans-serif;
+    width: 1440px;
+    margin: 0;
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+}
+
+#s1{
+    width: 50%;
+    background: url("images/bg-main-desktop.png") no-repeat left center / 65% 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10% 0;
+}
+
+#s1 div{
+    width: 500px;
+    height: 270px;
+    color: hsl(0, 0%, 100%);
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px 25px 50px 12px;
+}
+
+#cardFront{
+    background: url("images/bg-card-front.png") no-repeat left center / 100%;
+    margin-left: 10%;
+    margin-bottom: 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#cardFront img{
+    grid-column: span 2;
+    margin-top: 5%;
+    margin-left: 7%;
+}
+
+#cardFront h1{
+    margin: 10% 0 0 0;
+    grid-column: span 2;
+    font-weight: 500;
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+#cardFront h2{
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+#s1name{
+    margin: 5% 0 0 15%;
+}
+
+#s1cvc{
+    margin: 5% 15% 0 0;
+    justify-self: end;
+}
+
+#cardBack{
+    background: url("images/bg-card-back.png") no-repeat left center / 100%;
+    margin-left: 25%;
+}
+
+#cardBack h2{
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 24.5%;
+    margin-left: 80%;
+    letter-spacing: 3px;
+}
+
+form{
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    padding: 15% 10% 15% 15%;
+}
+
+form label{
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: hsl(278, 68%, 11%);
+}
+
+form input{
+    height: 50px;
+    color: hsl(278, 68%, 11%);
+    font-weight: bold;
+    padding-left: 5%;
+    font-size: 20px;
+    border-radius: 15px;
+    border: solid 2px hsl(270, 3%, 87%);
+    margin-top: 2%;
+}
+
+form input:hover, form input:focus{
+    border-image: linear-gradient(90deg, rgba(100, 72, 254, 1) 0%, rgba(96, 5, 148, 1) 100%);
+    border-image-slice: 1;
+}
+
+.t1{
+    grid-column: span 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.t2{
+    grid-column: span 2;
+}
+
+.t2 label{
+    display: block;
+}
+
+.t2 input{
+}
+
+.t3 label{
+    display: block;
+}
+
+form button{
+    grid-column: span 3;
+}
+
+#s2{
+    display: none;
+}
