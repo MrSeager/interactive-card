@@ -95,6 +95,10 @@ main{
   grid-gap: 0 5%;
 }
 
+#s2 div{
+  height: 75px;
+}
+
 #s2 label{
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -129,17 +133,19 @@ main{
   color: hsl(0, 100%, 66%);
   font-size: 13px;
   position: absolute;
-  bottom: 5px;
+  bottom: -40%;
 }
 
 .t2{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 60%;
+  gap: 0 0;
 }
 
 .t2 label{
   grid-column: span 2;
+  height: 12px;
+  padding: 0;
 }
 
 .t2 input{

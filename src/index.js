@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+//import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import LogoImg from './images/card-logo.svg';
+
+const invalidMess = "Wrong format, numbers only";
+const invalidMess2 = "Can't be blank";
 
 const Valid = (inputVal) => {
   const hasNonNumericChars = /[^\d\s]/.test(inputVal);
@@ -18,21 +21,23 @@ const Valid = (inputVal) => {
 const MainSite = () => {
   const [cardNumb, setCardNumb] = useState('');
   const [isValidFormat, setIsValidFormat] = useState(true);
+
   const [cardName, setCardName] = useState('');
+
   const [cardMonth, setCardMonth] = useState('');
   const [cardYear, setCardYear] = useState('');
+
   const [cardCVC, setCardCVC] = useState('');
-  const [isValidCVC, setIsValidCVC] = useState(true);
+
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleCardNumbChange = (event) => {
     const inputVal = event.target.value;
-    //const formattedVal = inputVal.replace(/\s/g, '');
     const {isValidFormat: newIsValidFormat, formattedValue} = Valid(inputVal);
     const spacedVal = formattedValue.replace(/(.{4})/g, '$1 ');
     const limitedVal = spacedVal.slice(0, 19);
     setCardNumb(limitedVal);
 
-    //const hasNonNumericChars = /[^\d\s]/.test(inputVal);
     setIsValidFormat(newIsValidFormat);
   };
 
@@ -40,10 +45,10 @@ const MainSite = () => {
     setCardName(event.target.value);
   }
 
-  const handleCardMonthCahnge = (event) => {
+  const handleCardMonthChange = (event) => {
     const inputVal = event.target.value;
     const limitedVal = inputVal.slice(0, 2);
-    setCardMonth(limitedVal)
+    setCardMonth(limitedVal);
   }
 
   const handleCardYearChange = (event) => {
@@ -54,11 +59,16 @@ const MainSite = () => {
 
   const handleCardCVCChange = (event) => {
     const inputVal = event.target.value;
-    const {isValidFormat: newIsValidCVC, formattedValue} = Valid(inputVal);
-    const limitedVal = formattedValue.slice(0, 3);
+    const limitedVal = inputVal.slice(0, 3);
     setCardCVC(limitedVal);
+  }
 
-    setIsValidCVC(newIsValidCVC);
+  const handleFormSubmit = () => {
+    if(!cardNumb.trim() || !cardName.trim() || !cardMonth.trim() || !cardYear.trim() || !cardCVC.trim()){
+      setFormSubmitted(true);
+    } else {
+      setFormSubmitted(false);
+    }
   }
 
   return (
@@ -76,7 +86,7 @@ const MainSite = () => {
       </section>
       <section id="s2">
         <div className="t1">
-          <label for="cardName">Cardholder Name</label>
+          <label htmlFor="cardName">Cardholder Name</label>
           <input 
             type="text" 
             id="cardName" 
@@ -84,9 +94,10 @@ const MainSite = () => {
             onChange={handleCardNameChange}
             placeholder="e.g. Jane Appleseed"
             />
+            {formSubmitted && !cardName.trim() && <p>{invalidMess2}</p>}
         </div>
         <div className="t1 cardNumb">
-          <label for="cardNumb">Card Number</label>
+          <label htmlFor="cardNumb">Card Number</label>
           <input 
             type="text" 
             id="cardNumb" 
@@ -94,21 +105,23 @@ const MainSite = () => {
             value={cardNumb}
             onChange={handleCardNumbChange}
             />
-            {!isValidFormat && <p>Wrong format, numbers only</p>}
+            {!isValidFormat && <p>{invalidMess}</p>}
+            {formSubmitted && !cardNumb.trim() && <p>{invalidMess2}</p>}
         </div>
         <div className="t2">
-          <label for="expDate">Exp. Date (MM/YY)</label>
+          <label htmlFor="expDate">Exp. Date (MM/YY)</label>
           <input 
-            type="text" 
+            type='number' 
             id="expDate" 
             min="01" 
             max="12" 
             value={cardMonth}
-            onChange={handleCardMonthCahnge}
+            onChange={handleCardMonthChange}
             placeholder="MM"
             />
+            {formSubmitted && (!cardMonth.trim() || !cardYear.trim()) && <p>{invalidMess2}</p>}
           <input 
-            type="text" 
+            type="number" 
             id="expDate"
             min="00" 
             max="99" 
@@ -118,20 +131,17 @@ const MainSite = () => {
             />
         </div>
         <div className="t3">
-          <label for="cvc">CVC</label>
+          <label htmlFor="cvc">CVC</label>
           <input 
-            type="text" 
-            id="cvc" 
-            name="cvc" 
-            maxlength="3" 
-            size="3" 
+            type="number" 
+            id="cvc"
             value={cardCVC}
             onChange={handleCardCVCChange}
             placeholder="e.g. 123"
             />
-            {!isValidCVC && <p>Wrong format, numbers only</p>}
+            {formSubmitted && !cardCVC.trim() && <p>{invalidMess2}</p>}
         </div>
-        <button>Confirm</button>
+        <button onClick={handleFormSubmit}>Confirm</button>
       </section>
     </main>
   );
