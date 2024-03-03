@@ -5,6 +5,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 import LogoImg from './images/card-logo.svg';
+import OkImg from './images/icon-complete.svg';
 
 const invalidMess = "Wrong format, numbers only";
 const invalidMess2 = "Can't be blank";
@@ -20,7 +21,6 @@ const Valid = (inputVal) => {
 
 const MainSite = () => {
   const [cardNumb, setCardNumb] = useState('');
-  const [isValidFormat, setIsValidFormat] = useState(true);
 
   const [cardName, setCardName] = useState('');
 
@@ -30,6 +30,7 @@ const MainSite = () => {
   const [cardCVC, setCardCVC] = useState('');
 
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isValidFormat, setIsValidFormat] = useState(true);
 
   const handleCardNumbChange = (event) => {
     const inputVal = event.target.value;
@@ -43,33 +44,46 @@ const MainSite = () => {
 
   const handleCardNameChange = (event) => {
     setCardName(event.target.value);
-  }
+  };
 
   const handleCardMonthChange = (event) => {
     const inputVal = event.target.value;
     const limitedVal = inputVal.slice(0, 2);
     setCardMonth(limitedVal);
-  }
+  };
 
   const handleCardYearChange = (event) => {
     const inputVal = event.target.value;
     const limitedVal = inputVal.slice(0, 2);
     setCardYear(limitedVal);
-  }
+  };
 
   const handleCardCVCChange = (event) => {
     const inputVal = event.target.value;
     const limitedVal = inputVal.slice(0, 3);
     setCardCVC(limitedVal);
-  }
+  };
 
   const handleFormSubmit = () => {
     if(!cardNumb.trim() || !cardName.trim() || !cardMonth.trim() || !cardYear.trim() || !cardCVC.trim()){
       setFormSubmitted(true);
     } else {
       setFormSubmitted(false);
+      document.getElementById("s2").style.display = 'none';
+      document.getElementById("s3").style.display = 'flex';
     }
-  }
+  };
+
+  const contButton = () => {
+    setCardName('');
+    setCardNumb('');
+    setCardMonth('');
+    setCardYear('');
+    setCardCVC('');
+
+    document.getElementById("s2").style.display = 'grid';
+    document.getElementById("s3").style.display = 'none';
+  };
 
   return (
     <main>
@@ -142,6 +156,12 @@ const MainSite = () => {
             {formSubmitted && !cardCVC.trim() && <p>{invalidMess2}</p>}
         </div>
         <button onClick={handleFormSubmit}>Confirm</button>
+      </section>
+      <section id="s3">
+        <img src={OkImg} alt="ok" />
+        <h3>Thank you!</h3>
+        <p>We've added your card details</p>
+        <button onClick={contButton}>Continue</button>
       </section>
     </main>
   );
