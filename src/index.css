@@ -1,5 +1,5 @@
 body {
-  margin: 0 auto;
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -219,5 +219,98 @@ main{
 @media (max-width:375px){
   body{
     width: 375px;
+  }
+
+  main{
+    flex-direction: column;
+  }
+
+  #s1{
+    width: 100%;
+    background: 
+      url("images/bg-main-mobile.png") 
+      no-repeat center top / 100% 80%;
+    position: relative;
+    height: 250px;
+  }
+
+  .card{
+    width: 250px;
+    height: 150px;
+  }
+
+  .front{
+    position: absolute;
+    margin: 0;
+    left: 5%;
+    bottom: 0%;
+  }
+
+  .front img{
+    width: 20%;
+  }
+
+  .front h1{
+    font-size: 15px;
+  }
+
+  .front h2{
+    font-size: 7px;
+  }
+
+  .back{
+      margin-left: 30%;
+  }
+
+  .back h2{
+    font-size: 10px;
+    padding-top: 26.5%;
+    padding-left: 78%;
+  }
+
+  #s2{
+    width: 90%;
+    margin: 0 5%;
+  }
+
+  #s2 label{
+    font-size: 9px;
+  }
+
+  #s2 input{
+    height: 30px;
+    border-radius: 5px;
+    font-size: 12px;
+  }
+
+  #s2 div p{
+    font-size: 7px;
+    bottom: 10%;
+  }
+
+  .t2 input{
+    margin-top: -35%;
+  }
+
+  #s2 button{
+    height: 35px;
+    border-radius: 5px;
+    font-size: 13px;
+  }
+
+  #s3{
+    width: 90%;
+    margin: 0 5%;
+  }
+
+  #s3 img{
+    width: 25%;
+  }
+
+  #s3 button{
+    width: 100%;
+    height: 35px;
+    font-size: 13px;
+    border-radius: 5px;
   }
 }

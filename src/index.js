@@ -125,8 +125,7 @@ const MainSite = () => {
         <div className="t2">
           <label htmlFor="expDate">Exp. Date (MM/YY)</label>
           <input 
-            type='number' 
-            id="expDate" 
+            type='number'
             min="01" 
             max="12" 
             value={cardMonth}
@@ -136,7 +135,6 @@ const MainSite = () => {
             {formSubmitted && (!cardMonth.trim() || !cardYear.trim()) && <p>{invalidMess2}</p>}
           <input 
             type="number" 
-            id="expDate"
             min="00" 
             max="99" 
             value={cardYear}
